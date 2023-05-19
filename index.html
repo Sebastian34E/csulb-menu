@@ -3,34 +3,80 @@
 <head>
     <title>Calstate Long Beach Dining Hall Menu</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/1.27.0/luxon.min.js"></script>
-</head>
+    <!-- <meta name="keywords" content="To implement later for the clicks" /> -->
+  </head>
 <body>
     <h1>CSULB Dining Hall Menu(Only for testing, Menus displayed are not accurate)</h1>
-      <h2>Beachside Menu</h2>
+     <script>
+        const { DateTime } = luxon;
+        const today1 = DateTime.local();
+        const day1 = today1.toLocaleString({ weekday: 'long' });
+        if (day1 === 'Saturday'){ 
+          //Beachside
+          document.write('<h2>Beachside Menu</h2>');
+            document.write('<h3>Brunch</h2>');
+              document.write('<div id="beachside_menu_brunch"></div>');
+            document.write('<h3>Dinner</h3>');
+              document.write('<div id="beachside_menu_dinner"></div>');
 
-        <h3>Breakfast</h3>
-          <div id="beachside_menu_breakfast"></div>
-        <h3>Lunch</h3>
-          <div id="beachside_menu_lunch"></div>
-        <h3>Dinner</h3>
-          <div id="beachside_menu_dinner"></div>
+          //Hillside
+          document.write('<h2>Hillside Menu</h2>');
+              document.write('<h3>Brunch</h2>');
+                document.write('<div id="hillside_menu_brunch"></div>');
+              document.write('<h3>Dinner</h3>');
+                document.write('<div id="hillside_menu_dinner"></div>');
 
-      <h2>Hillside Menu</h2>
-        <h3>Breakfast</h3>
-          <div id="hillside_menu_breakfast"></div>
-        <h3>Lunch</h3>
-          <div id="hillside_menu_lunch"></div>
-        <h3>Dinner</h3>
-          <div id="hillside_menu_dinner"></div>
+          //Parkside
+          document.write('<h2>Parkside Menu</h2>');
+          document.write('<h3>Sorry Parkside is Closed on Saturday</h3>');
+        } else if(day1 === 'Sunday') {
+            //Beachside
+            document.write('<h2>Beachside Menu</h2>');
+              document.write('<h3>Brunch</h2>');
+                document.write('<div id="beachside_menu_brunch"></div>');
+              document.write('<h3>Dinner</h3>');
+                document.write('<div id="beachside_menu_dinner"></div>');
 
-      <h2>Parkside Menu</h2>
-        <h3>Breakfast</h3>
-          <div id="parkside_menu_breakfast"></div>
-        <h3>Lunch</h3>
-          <div id="parkside_menu_lunch"></div>
-        <h3>Dinner</h3>
-          <div id="parkside_menu_dinner"></div>
+            //Parkside
+            document.write('<h2>Parkside Menu</h2>');
+              document.write('<h3>Brunch</h2>');
+                document.write('<div id="parkside_menu_brunch"></div>');
+              document.write('<h3>Dinner</h3>');
+                document.write('<div id="parkside_menu_dinner"></div>') ;
 
-    <script src="menu.js"></script>
+            //Hillside
+              document.write('<h2>Hillside Menu</h2>');
+                document.write('<h3>Sorry Hillside is Closed on Sunday</h3>')
+        } else {
+            //Beachside menu
+            document.write('<h2>Beachside Menu</h2>');
+              document.write('<h3>Breakfast</h2>');
+                document.write('<div id="beachside_menu_breakfast"></div>');
+              document.write('<h3>Lunch</h3>');
+                document.write('<div id="beachside_menu_lunch"></div>');
+              document.write('<h3>Dinner</h3>');
+                document.write('<div id="beachside_menu_dinner"></div>') ;
+
+            //Hillside menu
+            document.write('<h2>Hillside Menu</h2>');
+              document.write('<h3>Breakfast</h2>');
+                document.write('<div id="hillside_menu_breakfast"></div>');
+              document.write('<h3>Lunch</h3>');
+                document.write('<div id="hillside_menu_lunch"></div>');
+              document.write('<h3>Dinner</h3>');
+                document.write('<div id="hillside_menu_dinner"></div>') 
+
+            //Parkside Menu
+            document.write('<h2>Parkside Menu</h2>');
+              document.write('<h3>Breakfast</h2>');
+                document.write('<div id="parkside_menu_breakfast"></div>');
+              document.write('<h3>Lunch</h3>');
+                document.write('<div id="parkside_menu_lunch"></div>');
+              document.write('<h3>Dinner</h3>');
+                document.write('<div id="parkside_menu_dinner"></div>');
+        }
+    </script>
+    <script src="menu.js"></script> 
+
 </body>
 </html> 
