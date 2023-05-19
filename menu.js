@@ -1,12 +1,6 @@
-// const { DateTime } = require('luxon');
-
-
-// const today = DateTime.local();
-// const day = today.toLocaleString({ weekday: 'long' });
-// const firstMonday = today.startOf('week');
-// const formattedDate = firstMonday.toFormat('LLL d');
+//Gets todays Date and Day
 const today = luxon.DateTime.local();
-const day = today.toLocaleString({ weekday: 'long' });
+const day = today.toLocaleString({weekday: 'long'});
 const firstMonday = today.startOf('week');
 const formattedDate = firstMonday.toFormat('LLL d');
 
@@ -26,6 +20,7 @@ var hillside_cycle = get_cyclenumber(formattedDate, "Hillside");
 var parkside_cycle = get_cyclenumber(formattedDate, "Parkside");  
 
 function find_dic(cycleNumber, day, location) {
+  //All cycle information about what is served and when needs to be updated every semester from CSULB menu website
   //Cycle 1 Menu 
   let menu = null;
 
@@ -558,6 +553,7 @@ function find_dic(cycleNumber, day, location) {
         "Dinner": "Beef and Rice Soup\nPotato Leek Soup M/S/W\nPlum Sauce Chicken W/S\nPasta w/Marinara Sauce W\nThe Buddha Bowl"
     }
   };
+  //A bunch of If cases to return the menu of a given location when passed in it's cycle number 
   if (cycleNumber === '1') {
     if(day === 'Monday') {
       menu = Monday1;
@@ -582,25 +578,25 @@ function find_dic(cycleNumber, day, location) {
     }
   }
   if (cycleNumber === '2') {
-    if(day === 'Monday') {
+      if(day === 'Monday') {
       menu = Monday2;
     }
-    if(day === 'Tuesday') {
+      else if(day === 'Tuesday') {
       menu = Tuesday2;
     }
-    if(day === 'Wednesday') {
+      else if(day === 'Wednesday') {
       menu = Wednesday2;
     }
-    if(day === 'Thursday') {
+      else if(day === 'Thursday') {
       menu = Thursday2;
     }
-    if(day === 'Friday') {
+      else if(day === 'Friday') {
       menu = Friday2;
     }
-    if(day === 'Saturday') {
+      else if(day === 'Saturday') {
       menu = Saturday2;
     }
-    if(day === 'Sunday') {
+      else if(day === 'Sunday') {
       menu = Sunday2;
     }
   }
@@ -608,22 +604,22 @@ function find_dic(cycleNumber, day, location) {
     if(day === 'Monday') {
       menu = Monday3;
     }
-    if(day === 'Tuesday') {
+      else if(day === 'Tuesday') {
       menu = Tuesday3;
     }
-    if(day === 'Wednesday') {
+      else if(day === 'Wednesday') {
       menu = Wednesday3;
     }
-    if(day === 'Thursday') {
+      else if(day === 'Thursday') {
       menu = Thursday3;
     }
-    if(day === 'Friday') {
+      else if(day === 'Friday') {
       menu = Friday3;
     }
-    if(day === 'Saturday') {
+      else if(day === 'Saturday') {
       menu = Saturday3;
     }
-    if(day === 'Sunday') {
+      else if(day === 'Sunday') {
       menu = Sunday3;
     }
   }
@@ -631,22 +627,22 @@ function find_dic(cycleNumber, day, location) {
     if(day === 'Monday') {
       menu = Monday4;
     }
-    if(day === 'Tuesday') {
+    else if(day === 'Tuesday') {
       menu = Tuesday4;
     }
-    if(day === 'Wednesday') {
+    else if(day === 'Wednesday') {
       menu = Wednesday4;
     }
-    if(day === 'Thursday') {
+    else if(day === 'Thursday') {
       menu = Thursday4;
     }
-    if(day === 'Friday') {
+    else if(day === 'Friday') {
       menu = Friday4;
     }
-    if(day === 'Saturday') {
+    else if(day === 'Saturday') {
       menu = Saturday4;
     }
-    if(day === 'Sunday') {
+    else if(day === 'Sunday') {
       menu = Sunday4;
     }
   }
@@ -654,80 +650,144 @@ function find_dic(cycleNumber, day, location) {
     if(day === 'Monday') {
       menu = Monday5;
     }
-    if(day === 'Tuesday') {
+    else if(day === 'Tuesday') {
       menu = Tuesday5;
     }
-    if(day === 'Wednesday') {
+    else if(day === 'Wednesday') {
       menu = Wednesday5;
     }
-    if(day === 'Thursday') {
+    else if(day === 'Thursday') {
       menu = Thursday5;
     }
-    if(day === 'Friday') {
+    else if(day === 'Friday') {
       menu = Friday5;
     }
-    if(day === 'Saturday') {
+    else if(day === 'Saturday') {
       menu = Saturday5;
     }
-    if(day === 'Sunday') {
+    else if(day === 'Sunday') {
       menu = Sunday5;
     }
   }
   return menu[location];
 }
-var Beachside_menu = find_dic(beachside_cycle, day, "Beachside"); 
-var Hillside_menu = find_dic(hillside_cycle, day, "Hillside");
-var Parkside_menu = find_dic(parkside_cycle, day, "Parkside");
 
-console.log(Beachside_menu);
-console.log(Hillside_menu);
-console.log(Parkside_menu);
+//To remove the \n character and "" to be replaced with actual new line and to know which menu system to display
+//Can I probs remove the strict if cases since it doesn't matter too much here, yes, will I, Noooooo
+function display(cycle, day, location) {
+  var menu;
+  //If a regular weekday
+  if (day!== "Saturday" && day!== "Sunday") {
+    menu = find_dic(cycle, day, location); 
+    const B_menuContent = menu["Breakfast"];
+    const L_menuContent = menu["Lunch"];
+    const D_menuContent = menu["Dinner"];
+    const formatted_B= B_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
+    const formatted_L= L_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
+    const formatted_D= D_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
+    return [formatted_B, formatted_L,formatted_D];
+  }
+  //If Hillside on Saturday
+  else if (day === "Saturday" && location === "Hillside") {
+    menu = find_dic(cycle, day, location);
+    const B_menuContent = menu["Brunch"];
+    const D_menuContent = menu["Dinner"];
+    const formatted_B= B_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
+    const formatted_D= D_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
+    return [formatted_B, formatted_D];
+  }
+  //If Parkside on Sunday
+  else if(day === "Sunday" && location === "Parkside"){
+    menu = find_dic(cycle, day, location);
+    const B_menuContent = menu["Brunch"];
+    const D_menuContent = menu["Dinner"];
+    const formatted_B= B_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
+    const formatted_D= D_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
+    return [formatted_B, formatted_D];
 
-//To remove the \n character and "" to be replaced with actual new line
-//Beachside
-//Breakfast
-const Beachside_B_menuContent = Beachside_menu["Breakfast"];
-const formatted_Beachside_B_menuContent = Beachside_B_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
-//Lunch
-const Beachside_L_menuContent = Beachside_menu["Lunch"];
-const formatted_Beachside_L_menuContent = Beachside_L_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
-//Dinner
-const Beachside_D_menuContent = Beachside_menu["Dinner"];
-const formatted_Beachside_D_menuContent = Beachside_D_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
+  }
+  //For Beachside on weekend 
+  else if ((day === "Saturday" || day ==="Sunday") && location === "Beachside") {
+    menu = find_dic(cycle, day, location);
+    const B_menuContent = menu["Brunch"];
+    const D_menuContent = menu["Dinner"];
+    const formatted_B = B_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
+    const formatted_D = D_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
+    return [formatted_B, formatted_D];
+  }else{
+    //Error Case: Should never be triggered 
+    return["Closed", "Closed"]    
+  }
+}
+//This function job is to figure out what should be written on the website. It uses the If cases to determine
+//What day which location should be open and display menu items, and if not what to not give to the html file
+function to_write(B_menu, H_menu, P_menu, day) {
+  if (day === "Saturday") {
+    //Beachside
+    var formatted_Beachside_B_menuContent = B_menu[0];
+    var formatted_Beachside_D_menuContent = B_menu[1];
 
-//Hillside
-//Breakfast
-const Hillside_B_menuContent = Hillside_menu["Breakfast"];
-const formatted_Hillside_B_menuContent = Hillside_B_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
-//Lunch
-const Hillside_L_menuContent = Hillside_menu["Lunch"];
-const formatted_Hillside_L_menuContent = Hillside_L_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
-//Dinner
-const Hillside_D_menuContent = Hillside_menu["Dinner"];
-const formatted_Hillside_D_menuContent = Hillside_D_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
+    document.getElementById('beachside_menu_brunch').innerText = formatted_Beachside_B_menuContent;
+    document.getElementById('beachside_menu_dinner').innerText = formatted_Beachside_B_menuContent;
+    
+    //Hillside
+    var formatted_Hillside_B_menuContent = H_menu[0];
+    var formatted_Hillside_D_menuContent = H_menu[1];
+    document.getElementById('hillside_menu_brunch').innerText = formatted_Hillside_B_menuContent;
+    document.getElementById('hillside_menu_dinner').innerText = formatted_Hillside_D_menuContent;
+  }else if(day === "Sunday") {
+    //Beachside
+    var formatted_Beachside_B_menuContent = B_menu[0];
+    var formatted_Beachside_D_menuContent = B_menu[1];
 
-//Parkside
-//Breakfast
-const Parkside_B_menuContent = Parkside_menu["Breakfast"];
-const formatted_Parkside_B_menuContent = Parkside_B_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
-//Lunch
-const Parkside_L_menuContent = Parkside_menu["Lunch"];
-const formatted_Parkside_L_menuContent = Parkside_L_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
-//Dinner
-const Parkside_D_menuContent = Parkside_menu["Dinner"];
-const formatted_Parkside_D_menuContent = Parkside_D_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
-//End
+    document.getElementById('beachside_menu_brunch').innerText = formatted_Beachside_B_menuContent;
+    document.getElementById('beachside_menu_dinner').innerText = formatted_Beachside_B_menuContent;
+    //Parkside
+    var formatted_Parkside_B_menuContent = P_menu[0];
+    var formatted_Parkside_D_menuContent = P_menu[1];
 
-//Responsible for getting the formatted content of each dictonary to the html
-document.getElementById('beachside_menu_breakfast').innerText = formatted_Beachside_B_menuContent;
-document.getElementById('beachside_menu_lunch').innerText = formatted_Beachside_L_menuContent;
-document.getElementById('beachside_menu_dinner').innerText = formatted_Beachside_D_menuContent;
-//Hillside
-document.getElementById('hillside_menu_breakfast').innerText = formatted_Hillside_B_menuContent;
-document.getElementById('hillside_menu_lunch').innerText = formatted_Hillside_L_menuContent;
-document.getElementById('hillside_menu_dinner').innerText = formatted_Hillside_D_menuContent;
-//Parkside
-document.getElementById('parkside_menu_breakfast').innerText = formatted_Parkside_B_menuContent;
-document.getElementById('parkside_menu_lunch').innerText = formatted_Parkside_L_menuContent;
-document.getElementById('parkside_menu_dinner').innerText = formatted_Parkside_D_menuContent;
+    document.getElementById('parkside_menu_brunch').innerText = formatted_Parkside_B_menuContent;
+    document.getElementById('parkside_menu_dinner').innerText = formatted_Parkside_D_menuContent;
+  }else {
+    //Beachside//
+    var formatted_Beachside_B_menuContent = B_menu[0];
+    var formatted_Beachside_L_menuContent = B_menu[1];
+    var formatted_Beachside_D_menuContent = B_menu[2];
+    document.getElementById('beachside_menu_breakfast').innerText = formatted_Beachside_B_menuContent;
+    document.getElementById('beachside_menu_lunch').innerText = formatted_Beachside_L_menuContent;
+    document.getElementById('beachside_menu_dinner').innerText = formatted_Beachside_D_menuContent;
+    
+    //Hillside//
+    var formatted_Hillside_B_menuContent = H_menu[0];
+    var formatted_Hillside_L_menuContent = H_menu[1];
+    var formatted_Hillside_D_menuContent = H_menu[2];
+
+    document.getElementById('hillside_menu_breakfast').innerText = formatted_Hillside_B_menuContent;
+    document.getElementById('hillside_menu_lunch').innerText = formatted_Hillside_L_menuContent;
+    document.getElementById('hillside_menu_dinner').innerText = formatted_Hillside_D_menuContent;
+
+    //Parkside//
+    var formatted_Parkside_B_menuContent = P_menu[0];
+    var formatted_Parkside_L_menuContent = P_menu[1];
+    var formatted_Parkside_D_menuContent = P_menu[2];
+
+    document.getElementById('parkside_menu_breakfast').innerText = formatted_Parkside_B_menuContent;
+    document.getElementById('parkside_menu_lunch').innerText = formatted_Parkside_L_menuContent;
+    document.getElementById('parkside_menu_dinner').innerText = formatted_Parkside_D_menuContent;
+  }
+}
+//Just intializing the menu to pass into the to_write function
+var beachside_menu = display(beachside_cycle, day, "Beachside");
+var hillside_menu = display(hillside_cycle, day, "Hillside");
+var parkside_menu = display(parkside_cycle, day, "Parkside");
+
+//Does the Heavy lifting and sends all the menu information to Html
+to_write(beachside_menu, hillside_menu, parkside_menu, day);
+
+
+
+
+
+
+
 
