@@ -1,8 +1,8 @@
+//Gets todays Date and Day
 const today = luxon.DateTime.local();
-const day = today.toLocaleString({ weekday: 'long' });
+const day = today.toLocaleString({weekday: 'long'});
 const firstMonday = today.startOf('week');
 const formattedDate = firstMonday.toFormat('LLL d');
-console.log(day);
 
 //This function needs to be updated with the static information from the csulb menu website
 function get_cyclenumber(formattedDate, location) {
@@ -20,6 +20,7 @@ var hillside_cycle = get_cyclenumber(formattedDate, "Hillside");
 var parkside_cycle = get_cyclenumber(formattedDate, "Parkside");  
 
 function find_dic(cycleNumber, day, location) {
+  //All cycle information about what is served and when needs to be updated every semester from CSULB menu website
   //Cycle 1 Menu 
   let menu = null;
 
@@ -552,6 +553,7 @@ function find_dic(cycleNumber, day, location) {
         "Dinner": "Beef and Rice Soup\nPotato Leek Soup M/S/W\nPlum Sauce Chicken W/S\nPasta w/Marinara Sauce W\nThe Buddha Bowl"
     }
   };
+  //A bunch of If cases to return the menu of a given location when passed in it's cycle number 
   if (cycleNumber === '1') {
     if(day === 'Monday') {
       menu = Monday1;
@@ -576,25 +578,25 @@ function find_dic(cycleNumber, day, location) {
     }
   }
   if (cycleNumber === '2') {
-    if(day === 'Monday') {
+      if(day === 'Monday') {
       menu = Monday2;
     }
-    if(day === 'Tuesday') {
+      else if(day === 'Tuesday') {
       menu = Tuesday2;
     }
-    if(day === 'Wednesday') {
+      else if(day === 'Wednesday') {
       menu = Wednesday2;
     }
-    if(day === 'Thursday') {
+      else if(day === 'Thursday') {
       menu = Thursday2;
     }
-    if(day === 'Friday') {
+      else if(day === 'Friday') {
       menu = Friday2;
     }
-    if(day === 'Saturday') {
+      else if(day === 'Saturday') {
       menu = Saturday2;
     }
-    if(day === 'Sunday') {
+      else if(day === 'Sunday') {
       menu = Sunday2;
     }
   }
@@ -602,22 +604,22 @@ function find_dic(cycleNumber, day, location) {
     if(day === 'Monday') {
       menu = Monday3;
     }
-    if(day === 'Tuesday') {
+      else if(day === 'Tuesday') {
       menu = Tuesday3;
     }
-    if(day === 'Wednesday') {
+      else if(day === 'Wednesday') {
       menu = Wednesday3;
     }
-    if(day === 'Thursday') {
+      else if(day === 'Thursday') {
       menu = Thursday3;
     }
-    if(day === 'Friday') {
+      else if(day === 'Friday') {
       menu = Friday3;
     }
-    if(day === 'Saturday') {
+      else if(day === 'Saturday') {
       menu = Saturday3;
     }
-    if(day === 'Sunday') {
+      else if(day === 'Sunday') {
       menu = Sunday3;
     }
   }
@@ -625,22 +627,22 @@ function find_dic(cycleNumber, day, location) {
     if(day === 'Monday') {
       menu = Monday4;
     }
-    if(day === 'Tuesday') {
+    else if(day === 'Tuesday') {
       menu = Tuesday4;
     }
-    if(day === 'Wednesday') {
+    else if(day === 'Wednesday') {
       menu = Wednesday4;
     }
-    if(day === 'Thursday') {
+    else if(day === 'Thursday') {
       menu = Thursday4;
     }
-    if(day === 'Friday') {
+    else if(day === 'Friday') {
       menu = Friday4;
     }
-    if(day === 'Saturday') {
+    else if(day === 'Saturday') {
       menu = Saturday4;
     }
-    if(day === 'Sunday') {
+    else if(day === 'Sunday') {
       menu = Sunday4;
     }
   }
@@ -648,22 +650,22 @@ function find_dic(cycleNumber, day, location) {
     if(day === 'Monday') {
       menu = Monday5;
     }
-    if(day === 'Tuesday') {
+    else if(day === 'Tuesday') {
       menu = Tuesday5;
     }
-    if(day === 'Wednesday') {
+    else if(day === 'Wednesday') {
       menu = Wednesday5;
     }
-    if(day === 'Thursday') {
+    else if(day === 'Thursday') {
       menu = Thursday5;
     }
-    if(day === 'Friday') {
+    else if(day === 'Friday') {
       menu = Friday5;
     }
-    if(day === 'Saturday') {
+    else if(day === 'Saturday') {
       menu = Saturday5;
     }
-    if(day === 'Sunday') {
+    else if(day === 'Sunday') {
       menu = Sunday5;
     }
   }
@@ -671,6 +673,7 @@ function find_dic(cycleNumber, day, location) {
 }
 
 //To remove the \n character and "" to be replaced with actual new line and to know which menu system to display
+//Can I probs remove the strict if cases since it doesn't matter too much here, yes, will I, Noooooo
 function display(cycle, day, location) {
   var menu;
   //If a regular weekday
@@ -716,6 +719,8 @@ function display(cycle, day, location) {
     return["Closed", "Closed"]    
   }
 }
+//This function job is to figure out what should be written on the website. It uses the If cases to determine
+//What day which location should be open and display menu items, and if not what to not give to the html file
 function to_write(B_menu, H_menu, P_menu, day) {
   if (day === "Saturday") {
     //Beachside
@@ -771,9 +776,7 @@ function to_write(B_menu, H_menu, P_menu, day) {
     document.getElementById('parkside_menu_dinner').innerText = formatted_Parkside_D_menuContent;
   }
 }
-
-
-
+//Just intializing the menu to pass into the to_write function
 var beachside_menu = display(beachside_cycle, day, "Beachside");
 var hillside_menu = display(hillside_cycle, day, "Hillside");
 var parkside_menu = display(parkside_cycle, day, "Parkside");
