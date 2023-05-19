@@ -675,59 +675,92 @@ function find_dic(cycleNumber, day, location) {
   }
   return menu[location];
 }
-var Beachside_menu = find_dic(beachside_cycle, day, "Beachside"); 
-var Hillside_menu = find_dic(hillside_cycle, day, "Hillside");
-var Parkside_menu = find_dic(parkside_cycle, day, "Parkside");
 
-console.log(Beachside_menu);
-console.log(Hillside_menu);
-console.log(Parkside_menu);
+//To remove the \n character and "" to be replaced with actual new line and to know which menu system to display
+function display(cycle, day, location) {
+  var menu;
+  if (day === "Saturday" && location === "Hillside") {
+    menu = find_dic(cycle, day, location);
+    const B_menuContent = menu["Brunch"];
+    const D_menuContent = menu["Lunch"];
+    const formatted_B= B_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
+    const formatted_D= D_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
+    return [formatted_B, formatted_D];
+  }
+  if(day === "Sunday" && location === "Parkside"){
+    menu = find_dic(cycle, day, location);
+    const B_menuContent = menu["Brunch"];
+    const D_menuContent = menu["Lunch"];
+    const formatted_B= B_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
+    const formatted_D= D_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
+    return [formatted_B, formatted_D];
 
-//To remove the \n character and "" to be replaced with actual new line
-//Beachside
-//Breakfast
-const Beachside_B_menuContent = Beachside_menu["Breakfast"];
-const formatted_Beachside_B_menuContent = Beachside_B_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
-//Lunch
-const Beachside_L_menuContent = Beachside_menu["Lunch"];
-const formatted_Beachside_L_menuContent = Beachside_L_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
-//Dinner
-const Beachside_D_menuContent = Beachside_menu["Dinner"];
-const formatted_Beachside_D_menuContent = Beachside_D_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
+  }
+  if ((day === "Saturday" || day ==="Sunday") && location === "Beachside") {
+    const B_menuContent = menu["Brunch"];
+    const D_menuContent = menu["Lunch"];
+    const formatted_B= B_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
+    const formatted_D= D_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
+    return [formatted_B, formatted_D];
+  }else{
+    menu = find_dic(cycle, day, location); 
+    const B_menuContent = menu["Breakfast"];
+    const L_menuContent = menu["Lunch"];
+    const D_menuContent = menu["Dinner"];
+    const formatted_B= B_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
+    const formatted_L= L_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
+    const formatted_D= D_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
+    return [formatted_B, formatted_L,formatted_D];
+  }
+}
+function to_write(B_menu, H_menu, P_menu, day) {
+  if (day === "Saturday") {
+    
+  } if(day === "Sunday") {
 
-//Hillside
-//Breakfast
-const Hillside_B_menuContent = Hillside_menu["Breakfast"];
-const formatted_Hillside_B_menuContent = Hillside_B_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
-//Lunch
-const Hillside_L_menuContent = Hillside_menu["Lunch"];
-const formatted_Hillside_L_menuContent = Hillside_L_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
-//Dinner
-const Hillside_D_menuContent = Hillside_menu["Dinner"];
-const formatted_Hillside_D_menuContent = Hillside_D_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
+  }else {
+    //Beachside//
+    var formatted_Beachside_B_menuContent = B_menu[0];
+    var formatted_Beachside_L_menuContent = B_menu[1];
+    var formatted_Beachside_D_menuContent = B_menu[2];
+    document.getElementById('beachside_menu_breakfast').innerText = formatted_Beachside_B_menuContent;
+    document.getElementById('beachside_menu_lunch').innerText = formatted_Beachside_L_menuContent;
+    document.getElementById('beachside_menu_dinner').innerText = formatted_Beachside_D_menuContent;
+    
+    //Hillside//
+    var formatted_Hillside_B_menuContent = H_menu[0];
+    var formatted_Hillside_L_menuContent = H_menu[1];
+    var formatted_Hillside_D_menuContent = H_menu[2];
 
-//Parkside
-//Breakfast
-const Parkside_B_menuContent = Parkside_menu["Breakfast"];
-const formatted_Parkside_B_menuContent = Parkside_B_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
-//Lunch
-const Parkside_L_menuContent = Parkside_menu["Lunch"];
-const formatted_Parkside_L_menuContent = Parkside_L_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
-//Dinner
-const Parkside_D_menuContent = Parkside_menu["Dinner"];
-const formatted_Parkside_D_menuContent = Parkside_D_menuContent.replace(/\\n/g, '\n').replace(/"/g, '');
-//End
+    document.getElementById('hillside_menu_breakfast').innerText = formatted_Hillside_B_menuContent;
+    document.getElementById('hillside_menu_lunch').innerText = formatted_Hillside_L_menuContent;
+    document.getElementById('hillside_menu_dinner').innerText = formatted_Hillside_D_menuContent;
 
-//Responsible for getting the formatted content of each dictonary to the html
-document.getElementById('beachside_menu_breakfast').innerText = formatted_Beachside_B_menuContent;
-document.getElementById('beachside_menu_lunch').innerText = formatted_Beachside_L_menuContent;
-document.getElementById('beachside_menu_dinner').innerText = formatted_Beachside_D_menuContent;
-//Hillside
-document.getElementById('hillside_menu_breakfast').innerText = formatted_Hillside_B_menuContent;
-document.getElementById('hillside_menu_lunch').innerText = formatted_Hillside_L_menuContent;
-document.getElementById('hillside_menu_dinner').innerText = formatted_Hillside_D_menuContent;
-//Parkside
-document.getElementById('parkside_menu_breakfast').innerText = formatted_Parkside_B_menuContent;
-document.getElementById('parkside_menu_lunch').innerText = formatted_Parkside_L_menuContent;
-document.getElementById('parkside_menu_dinner').innerText = formatted_Parkside_D_menuContent;
+    //Parkside//
+    var formatted_Parkside_B_menuContent = P_menu[0];
+    var formatted_Parkside_L_menuContent = P_menu[1];
+    var formatted_Parkside_D_menuContent = P_menu[2];
+
+    document.getElementById('parkside_menu_breakfast').innerText = formatted_Parkside_B_menuContent;
+    document.getElementById('parkside_menu_lunch').innerText = formatted_Parkside_L_menuContent;
+    document.getElementById('parkside_menu_dinner').innerText = formatted_Parkside_D_menuContent;
+  }
+
+}
+
+
+
+var beachside_menu = display(beachside_cycle, day, "Beachside");
+var hillside_menu = display(hillside_cycle, day, "Hillside");
+var parkside_menu = display(parkside_cycle, day, "Parkside");
+
+
+to_write(beachside_menu, hillside_menu, parkside_menu, day);
+
+
+
+
+
+
+
 
