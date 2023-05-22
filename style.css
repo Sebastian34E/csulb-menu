@@ -1,0 +1,52 @@
+/* style.css */
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Table Header */
+th {
+  background-color: #fdf5e6;
+  color:#000000;
+  text-align: center;
+  padding: 8px;
+  font-size: 1em;
+}
+.primary{
+  background-color: #fdf5e6;
+  font-size: 1.5em;
+}
+
+/* Table Body (odd rows) */
+tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+/* Table Body (even rows) */
+tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
+/* Table Cell */
+td {
+  padding: 8px;
+  text-align: center;
+  font-size: 1em;
+}
+
+/* Table Cell (first column) */
+td:first-child {
+  font-weight: bold;
+}
+
+/* Table Cell (last column) */
+td:last-child {
+  text-align: center;
+}
+img.animated-gif{
+  width: 65%;
+  height: auto;
+  text-align: center;
+}
