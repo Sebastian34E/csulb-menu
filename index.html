@@ -1,81 +1,237 @@
+<!-- Credit to W3schools for template. Author: Sebastian Estrada -->
 <!DOCTYPE html>
 <html>
 <head>
     <title>Calstate Long Beach Dining Hall Menu</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/1.27.0/luxon.min.js"></script>
     <!-- <meta name="keywords" content="To implement later for the clicks" /> -->
-  </head>
+      <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="style.css">
+  <style>
+  body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+  .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+  .fa-anchor,.fa-coffee {font-size:200px}
+  </style>
+</head>
+
 <body>
-    <h1>CSULB Dining Hall Menu(Only for testing, Menus displayed are not accurate)</h1>
-     <script>
-        const { DateTime } = luxon;
-        const today1 = DateTime.local();
-        const day1 = today1.toLocaleString({ weekday: 'long' });
-        if (day1 === 'Saturday'){ 
-          //Beachside
-          document.write('<h2>Beachside Menu</h2>');
-            document.write('<h3>Brunch</h2>');
-              document.write('<div id="beachside_menu_brunch"></div>');
-            document.write('<h3>Dinner</h3>');
-              document.write('<div id="beachside_menu_dinner"></div>');
+      <!-- Navbar -->
+  <div class="w3-top">
+    <div class="w3-bar w3-sand w3-card w3-left-align w3-large">
+      <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-black" href="javascript:void(0);" onclick="poof()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+      <a href="/index.html" class="w3-bar-item w3-button w3-padding-large w3-black">Home</a>
+      <a href="/about.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">About Me</a>
+      <a href="https://dbt3.ch/@Arrow34" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">LinkTree</a>
+      </div>
 
-          //Hillside
-          document.write('<h2>Hillside Menu</h2>');
-              document.write('<h3>Brunch</h2>');
-                document.write('<div id="hillside_menu_brunch"></div>');
-              document.write('<h3>Dinner</h3>');
-                document.write('<div id="hillside_menu_dinner"></div>');
-
-          //Parkside
-          document.write('<h2>Parkside Menu</h2>');
-          document.write('<h3>Sorry Parkside is Closed on Saturday</h3>');
-        } else if(day1 === 'Sunday') {
-            //Beachside
-            document.write('<h2>Beachside Menu</h2>');
-              document.write('<h3>Brunch</h2>');
-                document.write('<div id="beachside_menu_brunch"></div>');
-              document.write('<h3>Dinner</h3>');
-                document.write('<div id="beachside_menu_dinner"></div>');
-
-            //Parkside
-            document.write('<h2>Parkside Menu</h2>');
-              document.write('<h3>Brunch</h2>');
-                document.write('<div id="parkside_menu_brunch"></div>');
-              document.write('<h3>Dinner</h3>');
-                document.write('<div id="parkside_menu_dinner"></div>') ;
-
-            //Hillside
-              document.write('<h2>Hillside Menu</h2>');
-                document.write('<h3>Sorry Hillside is Closed on Sunday</h3>')
-        } else {
-            //Beachside menu
-            document.write('<h2>Beachside Menu</h2>');
-              document.write('<h3>Breakfast</h2>');
-                document.write('<div id="beachside_menu_breakfast"></div>');
-              document.write('<h3>Lunch</h3>');
-                document.write('<div id="beachside_menu_lunch"></div>');
-              document.write('<h3>Dinner</h3>');
-                document.write('<div id="beachside_menu_dinner"></div>') ;
-
-            //Hillside menu
-            document.write('<h2>Hillside Menu</h2>');
-              document.write('<h3>Breakfast</h2>');
-                document.write('<div id="hillside_menu_breakfast"></div>');
-              document.write('<h3>Lunch</h3>');
-                document.write('<div id="hillside_menu_lunch"></div>');
-              document.write('<h3>Dinner</h3>');
-                document.write('<div id="hillside_menu_dinner"></div>') 
-
-            //Parkside Menu
-            document.write('<h2>Parkside Menu</h2>');
-              document.write('<h3>Breakfast</h2>');
-                document.write('<div id="parkside_menu_breakfast"></div>');
-              document.write('<h3>Lunch</h3>');
-                document.write('<div id="parkside_menu_lunch"></div>');
-              document.write('<h3>Dinner</h3>');
-                document.write('<div id="parkside_menu_dinner"></div>');
-        }
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+      <a href="/about.html" class="w3-bar-item w3-button w3-padding-large">About Me</a>
+      <a href="https://dbt3.ch/@Arrow34" class="w3-bar-item w3-button w3-padding-large">LinkTree</a>
+    </div>
+  </div>
+  <script>
+    function poof() {
+      var navDemo = document.getElementById("navDemo");
+      if (navDemo.classList.contains("w3-hide")) {
+        navDemo.classList.remove("w3-hide");
+      } else {
+        navDemo.classList.add("w3-hide");
+      }
+    }
+  </script>
+    <!-- Header -->
+  <header class="w3-container w3-sand w3-center" style="padding:128px 16px">
+    <h1 class="w3-margin w3-jumbo">CSULB Dining Hall Menu</h1>
+    <p class="w3-xlarge">(Only for testing, Menus displayed are not accurate)</p>
+    <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top" onclick="redirectToNewUrl()"> Buy me Boba?</button>
+    <script>
+      function redirectToNewUrl() {
+        // Specify the URL you want to redirect to
+        var newUrl = "https://dbt3.ch/@Arrow34";
+        // Redirect to the new URL
+        window.location.href = newUrl;
+      }
     </script>
+  </header>
+  <script>
+    const { DateTime } = luxon;
+    const today0 = DateTime.local();
+    const day0 = today0.toLocaleString({ weekday: 'long' });
+  </script>  
+  <!-- First Grid -->
+  <div class="w3-row-padding w3-padding-64 w3-container">
+    <div class="w3-content">
+      <div class="w3-twothird">
+        <h1>Beachside Menu</h1> 
+      <table>
+        <thead>
+          <tr>
+            <th class="primary">
+              Time:
+            </th>
+            <th class="primary"> 
+              <script>
+                // Write javascript function that depending on day will say what hours it has 
+                if (day0 === 'Saturday'||day0 === 'Sunday'){
+                  document.write('6:30 am - 8:30 pm')
+                }else {
+                  document.write('11 am - 7:30 pm');
+                }
+              </script>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+            <script>
+              if (day0 === 'Saturday' ||day0 === 'Sunday'){ 
+                //Beachside
+                document.write('<tr> <td>Brunch</td>');
+                  document.write(' <td> <div id="beachside_menu_brunch"></div> </td> </tr>');
+                document.write('<tr> <td>Dinner</td>');
+                  document.write('<td> <div id="beachside_menu_dinner"></div> </td> </tr>');
+              }else {
+                  //Beachside menu
+                  document.write('<tr> <td>Breakfast</td>');
+                    document.write('<td> <div id="beachside_menu_breakfast"></div> </td> </tr>');
+                  document.write('<tr> <td>Lunch</td>');
+                    document.write('<td> <div id="beachside_menu_lunch"></div> </td> </tr>');
+                  document.write('<tr> <td>Dinner</td>');
+                    document.write('<td> <div id="beachside_menu_dinner"></div> </td> </tr>');
+              }
+            </script>  
+        </tbody>
+        <tbody>
+        </tbody>
+      </table>
+          </div>
+      <!-- <div class="w3-third w3-center">
+        <i class="fa fa-anchor w3-padding-64 w3-text-red"></i>
+      </div> -->
+    </div>
+  </div>
+  
+  <!-- Second Grid -->
+  <div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
+    <div class="w3-content">
+      <!-- <div class="w3-third w3-center">
+        <i class="fa fa-coffee w3-padding-64 w3-text-red w3-margin-right"></i>
+      </div> -->
+
+      <div class="w3-twothird">
+        <h1>Hillside Menu</h1>
+        <table>
+          <thead>
+            <tr>
+              <script>
+                // Write javascript function that depending on day will say what hours it has 
+                if (day0 === 'Saturday'){
+                  document.write('<th class="primary">Time:</th> <th class="primary"><6:30 am - 8:30 pm</th>')
+                }else if (day0 === 'Sunday') {
+                  document.write('<th class="primary"> Sorry Hillside is Closed on Sunday </th>')
+                }else {
+                  document.write('<th class="primary">Time:</th> <th class="primary"> 11 am - 7:30 pm </th>');
+                }
+              </script>
+              <!-- <th class="primary">
+              </th> -->
+              <th class="primary"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+              <script>
+                if (day0 === 'Saturday'){ 
+                  //Hillside
+                  document.write('<tr> <td>Brunch</td>');
+                    document.write('<td> <div id="hillside_menu_brunch"></div> </td> </tr>');
+                  document.write('<tr> <td>Dinner</td>');
+                    document.write('<td> <div id="hillside_menu_dinner"></div> </td> </tr>');
+                }else if (day0 === 'Sunday') {
+                }else {
+                  //Hillside menu
+                  document.write('<tr> <td>Breakfast</td>');
+                    document.write('<td> <div id="hillside_menu_breakfast"></div> </td> </tr>');
+                  document.write('<tr> <td>Lunch</td>');
+                    document.write('<td> <div id="hillside_menu_lunch"></div> </td> </tr>');
+                  document.write('<tr> <td>Dinner</td>');
+                    document.write('<td> <div id="hillside_menu_dinner"></div> </td> </tr>');
+                }
+              </script>  
+          </tbody>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+ <!-- Third Grid -->
+ <div class="w3-row-padding w3-padding-64 w3-container">
+  <div class="w3-content">
+    <div class="w3-twothird">
+      <h1>Parkside Menu</h1> 
+      <table>
+        <thead>
+          <tr>
+            <script>
+              // Write javascript function that depending on day will say what hours it has 
+              if (day0 === 'Sunday'){
+                document.write('<th class="primary">Time:</th> <th class="primary">6:30 am - 8:30 pm</th>')
+              }else if (day0 === 'Saturday') {
+                document.write('<th class="primary"> Sorry Hillside is Closed on Sunday </th>')
+              }else {
+                document.write('<th class="primary">Time:</th> <th class="primary"> 11 am - 7:30 pm </th>');
+              }
+            </script>
+            <th class="primary"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+            <script>
+              if (day0 === 'Sunday'){ 
+                document.write('<tr> <td>Brunch</td>');
+                  document.write('<td> <div id="parkside_menu_brunch"></div> </td> </tr>');
+                document.write('<tr> <td>Dinner</td>');
+                  document.write('<td> <div id="parkside_menu_dinner"></div> </td> </tr>');
+              }else if (day0 === 'Saturday') {
+              }else {
+                document.write('<tr> <td>Breakfast</td>');
+                  document.write('<td> <div id="parkside_menu_breakfast"></div> </td> </tr>');
+                document.write('<tr> <td>Lunch</td>');
+                  document.write('<td> <div id="parkside_menu_lunch"></div> </td> </tr>');
+                document.write('<tr> <td>Dinner</td>');
+                  document.write('<td> <div id="parkside_menu_dinner"></div> </td> </tr>');
+              }
+            </script>  
+        </tbody>
+        <tbody>
+        </tbody>
+      </table>
+        </div>
+    <!-- <div class="w3-third w3-center">
+      <i class="fa fa-anchor w3-padding-64 w3-text-red"></i>
+    </div> -->
+  </div>
+</div>
+
+
+  <!-- <div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
+      <h1 class="w3-margin w3-xlarge">Quote of the day: live life</h1>
+  </div> -->
+
+    <!-- <h1>CSULB Dining Hall Menu(Only for testing, Menus displayed are not accurate)</h1> -->
+  
+    
+    <p>
+      Created By <a rel="author" href="https://github.com/Sebastian34E" target="_blank">Sebastian Estarda</a>
+    </p>
+    <p class="w3-hide-small">Webpage template by w3.css</p>
     <script src="menu.js"></script> 
 
 </body>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sebastian Estrada</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/luxon/1.27.0/luxon.min.js"></script>
+    <!-- <meta name="keywords" content="To implement later for the clicks" /> -->
+      <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="style.css">
+  
+  <style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+    .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+    .fa-anchor,.fa-coffee {font-size:200px}
+  </style>
+</head>
+<body>
+    <!-- Navbar -->
+  <div class="w3-top">
+    <div class="w3-bar w3-sand w3-card w3-left-align w3-large">
+      <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-black" href="javascript:void(0);" onclick="poof()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+      <a href="/index.html" class="w3-bar-item w3-button w3-padding-large w3-black">Home</a>
+      <a href="/about.html" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">About Me</a>
+      <a href="https://dbt3.ch/@Arrow34" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white">LinkTree</a>
+      </div>
+
+    <!-- Navbar on small screens -->
+    <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium w3-large">
+      <a href="/about.html" class="w3-bar-item w3-button w3-padding-large">About Me</a>
+      <a href="https://dbt3.ch/@Arrow34" class="w3-bar-item w3-button w3-padding-large">LinkTree</a>
+    </div>
+  </div>
+  <script>
+    function poof() {
+      var navDemo = document.getElementById("navDemo");
+      if (navDemo.classList.contains("w3-hide")) {
+        navDemo.classList.remove("w3-hide");
+      } else {
+        navDemo.classList.add("w3-hide");
+      }
+    }
+  </script>
+        <!-- First Grid -->
+        <div class="w3-row-padding w3-padding-64 w3-container">
+        <div class="w3-content">
+            <div class="w3-twothird">
+            <h1>Sebastian Estrada</h1>
+            <div class="w3-center">
+              <img class="animated-gif" src="/static/beyond-the-peak.gif">
+            </div>
+            <div class="w3-center">
+            <button class="w3-button w3-black w3-padding-large w3-large w3-margin-top" onclick="redirectToNewUrl()"> LinkTree</button>
+            </div>
+            <script>
+              function redirectToNewUrl() {
+                // Specify the URL you want to redirect to
+                var newUrl = "https://dbt3.ch/@Arrow34";
+                // Redirect to the new URL
+                window.location.href = newUrl;
+              }
+            </script>
+            <!-- <h5 class="w3-padding-32"> <a href="https://dbt3.ch/@Arrow34" target="_blank">LinkTree</a></h5> -->
+            <p class="w3-text-grey">Hello y'all,
+              I am a second-year, first-generation latine student at the University of California,
+              Berkeley majoring in Electrical Engineering and Computer Science. If you would like
+              to support my boba addiction, I would really appreciate it.
+            </p>
+          </div>
+        </div>
+        </div>
+</body>
+</html>
